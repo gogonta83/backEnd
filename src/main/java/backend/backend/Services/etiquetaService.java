@@ -3,7 +3,6 @@ package backend.backend.Services;
 import org.springframework.stereotype.Service;
 
 import backend.backend.Entities.etiqueta;
-import backend.backend.Entities.nota;
 import backend.backend.Entities.usuario;
 import backend.backend.Entities.DTO.etiquetaDTO;
 import backend.backend.Repositories.etiquetaRepository;
@@ -45,6 +44,9 @@ public class etiquetaService {
     }   
     public etiqueta[] ObteneretiquetasByUserId(int usuarioId) {
         usuario usuario = usuarioService.ObtenerUsuario(usuarioId);
+        if (usuario == null)
+            return null;
+
         return etiquetaRepository.findByUsuario(usuario);
     }
 }
